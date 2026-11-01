@@ -10,51 +10,92 @@
     {{ musicMuted ? '🔇' : '🔊' }}
   </button>
 
-  <section class="cover" [class.cover--opening]="opening" [class.cover--hidden]="entered" aria-label="Save the date cover">
-    <div class="cover__paper"></div>
-    <button class="seal" type="button" (click)="enterInvitation()" aria-label="Open invitation">
-      <span>Save</span>
-      <small>the</small>
-      <span>Date</span>
-    </button>
-    <p class="cover__hint">Tap the seal to open</p>
+  <!-- Opening curtains -->
+  <section class="cover" [class.cover--opening]="opening" [class.cover--hidden]="entered" aria-label="Wedding invitation cover">
+    <svg class="cover__defs" width="0" height="0" aria-hidden="true" focusable="false">
+      <defs>
+        <symbol id="blossom" viewBox="0 0 100 100">
+          <g fill="currentColor"><ellipse cx="50" cy="22" rx="11" ry="22" transform="rotate(0 50 50)"/><ellipse cx="50" cy="22" rx="11" ry="22" transform="rotate(45 50 50)"/><ellipse cx="50" cy="22" rx="11" ry="22" transform="rotate(90 50 50)"/><ellipse cx="50" cy="22" rx="11" ry="22" transform="rotate(135 50 50)"/><ellipse cx="50" cy="22" rx="11" ry="22" transform="rotate(180 50 50)"/><ellipse cx="50" cy="22" rx="11" ry="22" transform="rotate(225 50 50)"/><ellipse cx="50" cy="22" rx="11" ry="22" transform="rotate(270 50 50)"/><ellipse cx="50" cy="22" rx="11" ry="22" transform="rotate(315 50 50)"/></g>
+          <g fill="#ffffff" opacity=".35"><ellipse cx="50" cy="31" rx="6" ry="13" transform="rotate(22.5 50 50)"/><ellipse cx="50" cy="31" rx="6" ry="13" transform="rotate(67.5 50 50)"/><ellipse cx="50" cy="31" rx="6" ry="13" transform="rotate(112.5 50 50)"/><ellipse cx="50" cy="31" rx="6" ry="13" transform="rotate(157.5 50 50)"/><ellipse cx="50" cy="31" rx="6" ry="13" transform="rotate(202.5 50 50)"/><ellipse cx="50" cy="31" rx="6" ry="13" transform="rotate(247.5 50 50)"/><ellipse cx="50" cy="31" rx="6" ry="13" transform="rotate(292.5 50 50)"/><ellipse cx="50" cy="31" rx="6" ry="13" transform="rotate(337.5 50 50)"/></g>
+          <circle cx="50" cy="50" r="9" fill="#f3d994"/>
+          <circle cx="50" cy="50" r="4" fill="#d4a24c"/>
+        </symbol>
+      </defs>
+    </svg>
+
+    <div class="cover__curtain cover__curtain--l"></div>
+    <div class="cover__curtain cover__curtain--r"></div>
+
+    <div class="cover__valance"></div>
+    <div class="cover__garlands" aria-hidden="true">
+        <span class="garland garland--m" style="--n:5"></span>
+        <span class="garland garland--j" style="--n:7"></span>
+        <span class="garland garland--m" style="--n:8"></span>
+        <span class="garland garland--j" style="--n:6"></span>
+        <span class="garland garland--m" style="--n:4"></span>
+        <span class="garland garland--j" style="--n:3"></span>
+        <span class="garland garland--m" style="--n:3"></span>
+        <span class="garland garland--j" style="--n:4"></span>
+        <span class="garland garland--m" style="--n:6"></span>
+        <span class="garland garland--j" style="--n:8"></span>
+        <span class="garland garland--m" style="--n:7"></span>
+        <span class="garland garland--j" style="--n:5"></span>
+        <span class="garland garland--m" style="--n:4"></span>
+    </div>
+
+    <svg class="bloom bloom--tl" viewBox="0 0 100 100" aria-hidden="true"><use href="#blossom"/></svg>
+    <svg class="bloom bloom--tr" viewBox="0 0 100 100" aria-hidden="true"><use href="#blossom"/></svg>
+    <svg class="bloom bloom--bl" viewBox="0 0 100 100" aria-hidden="true"><use href="#blossom"/></svg>
+    <svg class="bloom bloom--br" viewBox="0 0 100 100" aria-hidden="true"><use href="#blossom"/></svg>
+
+    <div class="cover__stage">
+      <p class="cover__eyebrow">The wedding of</p>
+      <p class="cover__names">{{ invitation.groom }} <i>&amp;</i> {{ invitation.bride }}</p>
+      <div class="cover__medallion">
+        <svg class="bloom bloom--seal" viewBox="0 0 100 100" aria-hidden="true"><use href="#blossom"/></svg>
+        <button class="seal" type="button" (click)="enterInvitation()" aria-label="Open invitation">
+          <span>Save</span>
+          <small>the</small>
+          <span>Date</span>
+        </button>
+      </div>
+      <p class="cover__date">{{ invitation.shortDate }}</p>
+      <p class="cover__hint">Tap the seal to open the curtains</p>
+    </div>
   </section>
 
   <div id="invitation" class="invitation" [attr.aria-hidden]="!entered">
+
+    <!-- Names -->
     <section class="opening-names reveal" aria-labelledby="opening-names-title">
-      <div class="opening-names__falling-flowers" aria-hidden="true">
-        <span class="falling-flower falling-flower--one"></span>
-        <span class="falling-flower falling-flower--two"></span>
-        <span class="falling-flower falling-flower--three"></span>
-        <span class="falling-flower falling-flower--four"></span>
-        <span class="falling-flower falling-flower--five"></span>
-        <span class="falling-flower falling-flower--six"></span>
-        <span class="falling-flower falling-flower--seven"></span>
-        <span class="falling-flower falling-flower--eight"></span>
-        <span class="falling-flower falling-flower--nine"></span>
-        <span class="falling-flower falling-flower--ten"></span>
-        <span class="falling-petal falling-petal--one"></span>
-        <span class="falling-petal falling-petal--two"></span>
-        <span class="falling-petal falling-petal--three"></span>
-        <span class="falling-petal falling-petal--four"></span>
-        <span class="falling-petal falling-petal--five"></span>
+      <div class="opening-names__toran" aria-hidden="true">
+    <span class="opening-names__leaf"></span>
+    <span class="opening-names__leaf"></span>
+    <span class="opening-names__leaf"></span>
+    <span class="opening-names__leaf"></span>
+    <span class="opening-names__leaf"></span>
+    <span class="opening-names__leaf"></span>
+    <span class="opening-names__leaf"></span>
+    <span class="opening-names__leaf"></span>
+    <span class="opening-names__leaf"></span>
+    <span class="opening-names__leaf"></span>
+    <span class="opening-names__leaf"></span>
+    <span class="opening-names__leaf"></span>
       </div>
-      <!-- <img class="opening-names__couple-art" src="./assets/bride-groom.svg" alt="Bride and groom illustration" /> -->
-      <div class="opening-names__petal opening-names__petal--one" aria-hidden="true"></div>
-      <div class="opening-names__petal opening-names__petal--two" aria-hidden="true"></div>
       <div class="opening-names__centerpiece">
-          <div class="opening-names__wreath" aria-hidden="true">
-            <span class="opening-names__leaf opening-names__leaf--one"></span>
-            <span class="opening-names__leaf opening-names__leaf--two"></span>
-            <span class="opening-names__leaf opening-names__leaf--three"></span>
-            <span class="opening-names__leaf opening-names__leaf--four"></span>
-            <span class="opening-names__flower opening-names__flower--one">✦</span>
-            <span class="opening-names__flower opening-names__flower--two">✦</span>
-          </div>
+        <div class="opening-names__wreath" aria-hidden="true">
+          <span class="opening-names__flower opening-names__flower--one">✦</span>
+        </div>
         <div class="opening-names__content">
+          <p class="opening-names__eyebrow">Shubha Vivaha</p>
           <h1 id="opening-names-title"><span>{{ invitation.groom }}</span><b>&amp;</b><span>{{ invitation.bride }}</span></h1>
         </div>
       </div>
+      <img
+        class="opening-names__bride-groom"
+        src="./assets/deepak-shreya-wedding.png"
+        alt="Deepak and Shreya in traditional South Indian wedding attire"
+      />
       <div class="opening-names__scroll-up" [class.opening-names__scroll-up--hidden]="!showScrollUp" aria-label="Scroll up indicator">
         <div class="opening-names__scroll-up-arrows" aria-hidden="true">
           <span class="opening-names__scroll-up-arrow"></span>
@@ -62,136 +103,23 @@
         </div>
         <span class="opening-names__scroll-up-text">SCROLL UP</span>
       </div>
-      <img
-  class="opening-names__bride-groom"
-  src="./assets/deepak-shreya-wedding.png"
-  alt="Deepak and Shreya in traditional South Indian wedding attire"
-/>
     </section>
-    <section class="welcome section-light reveal">
-      <!-- <div class="ganesha">ॐ</div>
-      <p class="eyebrow">With the blessings of Shree Muchuru Duragaprameshwari</p> -->
+
+    <!-- Story -->
+    <section class="welcome block section-light reveal">
       <p class="story">“{{ invitation.story }}”</p>
-      <div class="petals" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
     </section>
 
-    <!-- <section class="names section-light reveal">
-      <p class="eyebrow">Together with their families</p>
-      <h1>{{ invitation.groom }}</h1>
-      <div class="ampersand">&amp;</div>
-      <h1>{{ invitation.bride }}</h1>
-      <p class="names__copy">invite you to celebrate the beginning of their forever.</p>
-      <div class="rule"></div>
-      <p class="date-line">{{ invitation.date }} · {{ invitation.time }}</p>
-    </section> -->
-
-    <section #scratchSection class="scratch-section section-dark reveal">
+    <!-- Scratch card -->
+    <section #scratchSection class="scratch-section block section-dark reveal">
       <h2>Save the Date</h2>
       <p class="section-subtitle">Scratch to reveal the details</p>
       <div class="scroll-card">
         <div class="scratch-section__celebration" aria-hidden="true">
-          <span class="celebration-flower celebration-flower--1"></span>
-          <span class="celebration-flower celebration-flower--2"></span>
-          <span class="celebration-flower celebration-flower--3"></span>
-          <span class="celebration-flower celebration-flower--4"></span>
-          <span class="celebration-flower celebration-flower--5"></span>
-          <span class="celebration-flower celebration-flower--6"></span>
-          <span class="celebration-flower celebration-flower--7"></span>
-          <span class="celebration-flower celebration-flower--8"></span>
-          <span class="celebration-flower celebration-flower--9"></span>
-          <span class="celebration-flower celebration-flower--10"></span>
-          <span class="celebration-flower celebration-flower--11"></span>
-          <span class="celebration-flower celebration-flower--12"></span>
-          <span class="celebration-flower celebration-flower--13"></span>
-          <span class="celebration-flower celebration-flower--14"></span>
-          <span class="celebration-flower celebration-flower--15"></span>
-          <span class="celebration-flower celebration-flower--16"></span>
-          <span class="celebration-flower celebration-flower--17"></span>
-          <span class="celebration-flower celebration-flower--18"></span>
-          <span class="celebration-flower celebration-flower--19"></span>
-          <span class="celebration-flower celebration-flower--20"></span>
-          <span class="celebration-flower celebration-flower--21"></span>
-          <span class="celebration-flower celebration-flower--22"></span>
-          <span class="celebration-flower celebration-flower--23"></span>
-          <span class="celebration-flower celebration-flower--24"></span>
-          <span class="celebration-flower celebration-flower--25"></span>
-          <span class="celebration-flower celebration-flower--26"></span>
-          <span class="celebration-flower celebration-flower--27"></span>
-          <span class="celebration-flower celebration-flower--28"></span>
-          <span class="celebration-flower celebration-flower--29"></span>
-          <span class="celebration-flower celebration-flower--30"></span>
-          <span class="paper-blast paper-blast--1"></span>
-          <span class="paper-blast paper-blast--2"></span>
-          <span class="paper-blast paper-blast--3"></span>
-          <span class="paper-blast paper-blast--4"></span>
-          <span class="paper-blast paper-blast--5"></span>
-          <span class="paper-blast paper-blast--6"></span>
-          <span class="paper-blast paper-blast--7"></span>
-          <span class="paper-blast paper-blast--8"></span>
-          <span class="paper-blast paper-blast--9"></span>
-          <span class="paper-blast paper-blast--10"></span>
-          <span class="paper-blast paper-blast--11"></span>
-          <span class="paper-blast paper-blast--12"></span>
-          <span class="paper-blast paper-blast--13"></span>
-          <span class="paper-blast paper-blast--14"></span>
-          <span class="paper-blast paper-blast--15"></span>
-          <span class="paper-blast paper-blast--16"></span>
-          <span class="paper-blast paper-blast--17"></span>
-          <span class="paper-blast paper-blast--18"></span>
-          <span class="paper-blast paper-blast--19"></span>
-          <span class="paper-blast paper-blast--20"></span>
-          <span class="paper-blast paper-blast--21"></span>
-          <span class="paper-blast paper-blast--22"></span>
-          <span class="paper-blast paper-blast--23"></span>
-          <span class="paper-blast paper-blast--24"></span>
-          <span class="paper-blast paper-blast--25"></span>
-          <span class="paper-blast paper-blast--26"></span>
-          <span class="paper-blast paper-blast--27"></span>
-          <span class="paper-blast paper-blast--28"></span>
-          <span class="paper-blast paper-blast--29"></span>
-          <span class="paper-blast paper-blast--30"></span>
-          <span class="paper-blast paper-blast--31"></span>
-          <span class="paper-blast paper-blast--32"></span>
-          <span class="paper-blast paper-blast--33"></span>
-          <span class="paper-blast paper-blast--34"></span>
-          <span class="paper-blast paper-blast--35"></span>
-          <span class="paper-blast paper-blast--36"></span>
-          <span class="paper-blast paper-blast--37"></span>
-          <span class="paper-blast paper-blast--38"></span>
-          <span class="paper-blast paper-blast--39"></span>
-          <span class="paper-blast paper-blast--40"></span>
-          <span class="paper-blast paper-blast--41"></span>
-          <span class="paper-blast paper-blast--42"></span>
-          <span class="paper-blast paper-blast--43"></span>
-          <span class="paper-blast paper-blast--44"></span>
-          <span class="paper-blast paper-blast--45"></span>
-          <span class="paper-blast paper-blast--46"></span>
-          <span class="paper-blast paper-blast--47"></span>
-          <span class="paper-blast paper-blast--48"></span>
-          <span class="paper-blast paper-blast--49"></span>
-          <span class="paper-blast paper-blast--50"></span>
-          <span class="paper-blast paper-blast--51"></span>
-          <span class="paper-blast paper-blast--52"></span>
-          <span class="paper-blast paper-blast--53"></span>
-          <span class="paper-blast paper-blast--54"></span>
-          <span class="paper-blast paper-blast--55"></span>
-          <span class="paper-blast paper-blast--56"></span>
-          <span class="paper-blast paper-blast--57"></span>
-          <span class="paper-blast paper-blast--58"></span>
-          <span class="paper-blast paper-blast--59"></span>
-          <span class="paper-blast paper-blast--60"></span>
-          <span class="paper-blast paper-blast--61"></span>
-          <span class="paper-blast paper-blast--62"></span>
-          <span class="paper-blast paper-blast--63"></span>
-          <span class="paper-blast paper-blast--64"></span>
-          <span class="paper-blast paper-blast--65"></span>
-          <span class="paper-blast paper-blast--66"></span>
-          <span class="paper-blast paper-blast--67"></span>
-          <span class="paper-blast paper-blast--68"></span>
-          <span class="paper-blast paper-blast--69"></span>
-          <span class="paper-blast paper-blast--70"></span>
-          <span class="paper-blast paper-blast--71"></span>
-          <span class="paper-blast paper-blast--72"></span>
+          <span class="spark"></span><span class="spark"></span><span class="spark"></span><span class="spark"></span>
+          <span class="spark"></span><span class="spark"></span><span class="spark"></span><span class="spark"></span>
+          <span class="spark"></span><span class="spark"></span><span class="spark"></span><span class="spark"></span>
+          <span class="spark"></span><span class="spark"></span><span class="spark"></span><span class="spark"></span>
         </div>
         <div class="scroll-roll scroll-roll--top"></div>
         <div class="scroll-message" [class.scroll-message--revealed]="scratched">
@@ -214,7 +142,8 @@
       <p class="scratch-note">Use your finger across the card</p>
     </section>
 
-    <section class="with-blessings reveal" aria-labelledby="with-blessings-heading">
+    <!-- Blessings -->
+    <section class="with-blessings block section-light reveal" aria-labelledby="with-blessings-heading">
       <div class="with-blessings__card">
         <div class="with-blessings__icon" aria-hidden="true">
           <img src="./assets/Ganesha.png" alt="" aria-hidden="true" />
@@ -245,7 +174,8 @@
       </div>
     </section>
 
-    <section class="timeline section-light reveal">
+    <!-- Timeline -->
+    <section class="timeline block section-dark reveal">
       <h2>Event Timeline</h2>
       <div class="timeline__items">
         <article><span class="timeline__dot"></span><div><h3>Muhurtham</h3><p>11:30 AM</p></div></article>
@@ -253,21 +183,25 @@
       </div>
     </section>
 
-    <section class="venue section-light reveal">
+    <!-- Venue -->
+    <section class="venue block section-light reveal">
       <h2>Venue</h2>
       <p class="venue__name">{{ invitation.venue }}</p>
-      <div class="map-card" aria-label="Illustrated map to the venue">
-        <span class="map-road map-road--one"></span><span class="map-road map-road--two"></span><span class="map-pin">♥</span>
-        <span class="map-label">Karkala</span>
+      <div class="map-card" aria-label="Venue location">
+        <iframe
+          class="map-frame"
+          title="Map showing the venue"
+          src="https://maps.google.com/maps?q=Bhagavan+Shri+Bahubali+Pravachana+Mandira,+Karkala&z=15&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          tabindex="-1"></iframe>
       </div>
       <button class="button" type="button" (click)="openMaps()">View on Google Maps ↗</button>
     </section>
 
-    <section class="closing section-dark reveal">
+    <!-- Countdown -->
+    <section class="closing block section-dark reveal">
       <div class="closing__frame">
-        <!-- <p class="eyebrow eyebrow--soft">With love,</p>
-        <h2>Adithya <span>&amp;</span> Sameeksha</h2>
-        <p>We cannot wait to celebrate this beautiful day with you.</p> -->
         <h2 class="countdown__title">Counting Down</h2>
         <div class="countdown" aria-label="Time until the wedding">
           <div><strong>{{ countdown.days }}</strong><span>Days</span></div>
@@ -277,59 +211,26 @@
         </div>
       </div>
     </section>
-    <section class="photo-frames section-light reveal" aria-label="Photos of the couple">
-      <div class="photo-frames__divider" aria-hidden="true"></div>
-      <div class="photo-frames__content">
-        <div class="hanging-photos" aria-label="Photos of the couple">
-          <figure class="hanging-photo hanging-photo--one">
-            <span class="hanging-photo__string"></span>
-            <span class="hanging-photo__clip"></span>
-            <img src="./assets/couple_1.jpeg" alt="Deepak and Shreya together" />
-            <figcaption>Together</figcaption>
-          </figure>
-          <figure class="hanging-photo hanging-photo--two">
-            <span class="hanging-photo__string"></span>
-            <span class="hanging-photo__clip"></span>
-            <img src="./assets/couple_2.jpeg" alt="Deepak and Shreya smiling together" />
-            <figcaption>Forever</figcaption>
-          </figure>
-          <figure class="hanging-photo hanging-photo--three">
-            <span class="hanging-photo__string"></span>
-            <span class="hanging-photo__clip"></span>
-            <<img src="./assets/couple_3.jpeg" alt="Deepak and Shreya" />
-            <figcaption>Always</figcaption>
-          </figure>
-          <figure class="hanging-photo hanging-photo--four">
-            <span class="hanging-photo__string"></span>
-            <span class="hanging-photo__clip"></span>
-            <img src="./assets/couple_4.jpeg" alt="Deepak and Shreya" />
-            <figcaption>Blessed</figcaption>
-          </figure>
-          <figure class="hanging-photo hanging-photo--one">
-  <span class="hanging-photo__string"></span>
-  <span class="hanging-photo__clip"></span>
-  <img src="./assets/couple_5.jpeg" alt="Deepak and Shreya" />
-  <figcaption>Our Memories</figcaption>
-</figure>
-<figure class="hanging-photo hanging-photo--two">
-  <span class="hanging-photo__string"></span>
-  <span class="hanging-photo__clip"></span>
-  <img src="./assets/couple_6.jpeg" alt="Deepak and Shreya" />
-  <figcaption>Together Forever</figcaption>
-</figure>
-        </div>
+
+    <!-- Photos -->
+    <section class="photo-frames block section-light reveal" aria-label="Photos of the couple">
+      <div class="hanging-photos">
+        <figure class="hanging-photo"><img src="./assets/couple_1.jpeg" alt="Deepak and Shreya together" /><figcaption>Together</figcaption></figure>
+        <figure class="hanging-photo"><img src="./assets/couple_2.jpeg" alt="Deepak and Shreya smiling together" /><figcaption>Forever</figcaption></figure>
+        <figure class="hanging-photo"><img src="./assets/couple_3.jpeg" alt="Deepak and Shreya" /><figcaption>Always</figcaption></figure>
+        <figure class="hanging-photo"><img src="./assets/couple_4.jpeg" alt="Deepak and Shreya" /><figcaption>Blessed</figcaption></figure>
+        <figure class="hanging-photo"><img src="./assets/couple_5.jpeg" alt="Deepak and Shreya" /><figcaption>Our Memories</figcaption></figure>
+        <figure class="hanging-photo"><img src="./assets/couple_6.jpeg" alt="Deepak and Shreya" /><figcaption>Together Forever</figcaption></figure>
       </div>
     </section>
-    <section class="best-wishes section-light reveal" aria-labelledby="best-wishes-title">
-      <div class="best-wishes__petal best-wishes__petal--one" aria-hidden="true"></div>
-      <div class="best-wishes__petal best-wishes__petal--two" aria-hidden="true"></div>
-      <div class="best-wishes__petal best-wishes__petal--three" aria-hidden="true"></div>
-      <div class="best-wishes__content">
-        <div class="best-wishes__ornament" aria-hidden="true">❧ ❧ ❧</div>
-        <p class="best-wishes__message">With hearts full of joy, we cordially invite you to grace<br class="best-wishes__break" /> our wedding celebrations and bless us as we begin our<br class="best-wishes__break" /> new chapter together.</p>
-        <h2 id="best-wishes-title">Best wishes from</h2>
-        <p class="best-wishes__from">FAMILY &amp; FRIENDS</p>
-      </div>
+
+    <!-- Best wishes -->
+    <section class="best-wishes block section-dark reveal" aria-labelledby="best-wishes-title">
+      <div class="best-wishes__ornament" aria-hidden="true">❧ ❧ ❧</div>
+      <p class="best-wishes__message">With hearts full of joy, we cordially invite you to grace our wedding celebrations and bless us as we begin our new chapter together.</p>
+      <h2 id="best-wishes-title">Best wishes from</h2>
+      <p class="best-wishes__from">FAMILY &amp; FRIENDS</p>
     </section>
+
   </div>
 </main>

@@ -51,7 +51,7 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   private revealObserver?: IntersectionObserver;
   private sectionRevealObserver?: IntersectionObserver;
   private backgroundMusic?: HTMLAudioElement;
-  private readonly musicSource = 'assets/Ubhayakushala.mp3.mpeg';
+  private readonly musicSource = 'assets/wedding-song.mp3';
   private hideScrollUpListenerBound = false;
   private openingNameRevealTimeouts: number[] = [];
   private openingNameRevealTriggered = false;
@@ -391,9 +391,9 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     this.context = canvas.getContext('2d') ?? undefined;
     if (!this.context) return;
     const gradient = this.context.createLinearGradient(0, 0, canvas.width, canvas.height);
-    gradient.addColorStop(0, '#b8e0e9');
-    gradient.addColorStop(0.5, '#6faec0');
-    gradient.addColorStop(1, '#d5edf0');
+    gradient.addColorStop(0, '#f3d994');
+    gradient.addColorStop(0.5, '#d4a24c');
+    gradient.addColorStop(1, '#fbf1dc');
     this.context.fillStyle = gradient;
     this.context.fillRect(0, 0, canvas.width, canvas.height);
     this.context.fillStyle = 'rgba(255, 255, 255, .34)';
@@ -402,7 +402,7 @@ export class AppComponent implements AfterViewInit, OnDestroy {
       const y = Math.random() * canvas.height;
       this.context.fillRect(x, y, Math.random() * 7 + 2, Math.random() * 7 + 2);
     }
-    this.context.fillStyle = '#234b5d';
+    this.context.fillStyle = '#4a0b17';
     this.context.font = '600 34px Georgia';
     this.context.textAlign = 'center';
     this.context.fillText('Scratch here', canvas.width / 2, canvas.height / 2);
